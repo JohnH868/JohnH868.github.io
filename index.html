@@ -3,173 +3,406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JohhH868.github.io</title>
+    <title>JohnH868.github.io</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+        :root {
+            --leetcode-primary: #1a1a1a;
+            --leetcode-secondary: #282828;
+            --leetcode-accent: #ffa116;
+            --leetcode-text: #e6e6e6;
+            --leetcode-text-secondary: #b3b3b3;
+            --leetcode-green: #28a745;
+            --leetcode-red: #dc3545;
+            --leetcode-blue: #17a2b8;
+        }
         
         body {
             margin: 0;
             padding: 0;
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--leetcode-primary);
+            color: var(--leetcode-text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+        }
+        
+        .profile-header {
+            grid-column: 1 / -1;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--leetcode-secondary);
+            margin-bottom: 20px;
         }
         
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .neon-text {
-            position: relative;
-            font-size: 8vw;
-            font-weight: 700;
-            color: #fff;
-            text-shadow: 
-                0 0 10px #0ff,
-                0 0 20px #0ff,
-                0 0 30px #0ff,
-                0 0 40px #0ff;
-            animation: flicker 1.5s infinite alternate;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .neon-text:hover {
-            transform: translateY(-10px) scale(1.05);
-            text-shadow: 
-                0 0 15px #f0f,
-                0 0 30px #f0f,
-                0 0 45px #f0f;
-        }
-        
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-                text-shadow: 
-                    0 0 10px #0ff,
-                    0 0 20px #0ff,
-                    0 0 30px #0ff,
-                    0 0 40px #0ff;
-            }
-            20%, 24%, 55% {        
-                text-shadow: none;
-            }
-        }
-        
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        
-        .glow-circle {
-            position: absolute;
-            width: 300px;
-            height: 300px;
+        .avatar {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,255,255,0.3) 0%, rgba(0,255,255,0) 70%);
-            filter: blur(30px);
-            animation: float 12s ease-in-out infinite;
+            background-color: var(--leetcode-secondary);
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--leetcode-accent);
+            border: 2px solid var(--leetcode-accent);
         }
         
-        .glow-circle:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255,0,255,0.3) 0%, rgba(255,0,255,0) 70%);
-            animation-delay: 2s;
-            animation-duration: 10s;
+        .profile-info h1 {
+            margin: 0;
+            color: var(--leetcode-accent);
+            font-size: 1.8rem;
         }
         
-        @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(50px, 50px) rotate(180deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
+        .profile-info p {
+            margin: 5px 0 0;
+            color: var(--leetcode-text-secondary);
+        }
+        
+        .stats {
+            display: flex;
+            margin-top: 10px;
+        }
+        
+        .stat-item {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .stat-item .icon {
+            margin-right: 5px;
+            color: var(--leetcode-accent);
+        }
+        
+        .main-content {
+            background-color: var(--leetcode-secondary);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .widget {
+            background-color: var(--leetcode-secondary);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .widget-title {
+            margin: 0 0 15px;
+            font-size: 1.2rem;
+            color: var(--leetcode-accent);
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--leetcode-primary);
+        }
+        
+        .calendar {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .calendar th {
+            padding: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--leetcode-text-secondary);
+        }
+        
+        .calendar td {
+            padding: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .calendar .current-day {
+            background-color: var(--leetcode-accent);
+            color: var(--leetcode-primary);
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .calendar-nav button {
+            background: none;
+            border: none;
+            color: var(--leetcode-text);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .calendar-nav button:hover {
+            color: var(--leetcode-accent);
+        }
+        
+        .view-counter {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: var(--leetcode-accent);
+        }
+        
+        .view-label {
+            text-align: center;
+            color: var(--leetcode-text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+        }
+        
+        .progress-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: var(--leetcode-primary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--leetcode-accent);
+            width: 75%;
+        }
+        
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .badge {
+            background-color: var(--leetcode-primary);
+            color: var(--leetcode-accent);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            border: 1px solid var(--leetcode-accent);
+        }
+        
+        .section-title {
+            margin: 20px 0 15px;
+            color: var(--leetcode-accent);
+            font-size: 1.3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles-js"></div>
-    <div class="glow-circle"></div>
-    <div class="glow-circle"></div>
-    <h1 class="neon-text">This is John L1ghtwood~</h1>
+    <div class="container">
+        <div class="profile-header">
+            <div class="avatar">JL</div>
+            <div class="profile-info">
+                <h1>John L1ghtwood</h1>
+                <p>Senior Software Engineer | Competitive Programmer</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="icon">★</span>
+                        <span>Rating: 2100</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="icon">✓</span>
+                        <span>Solved: 450</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="icon">🏆</span>
+                        <span>Contests: 65</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <h2 class="section-title">About Me</h2>
+            <p>I'm a passionate software engineer with a strong background in algorithms and data structures. I enjoy solving complex problems and participating in competitive programming contests.</p>
+            <p>My expertise includes Python, Java, and C++, with a focus on optimizing solutions for performance and efficiency. I'm also experienced in full-stack web development and system design.</p>
+            
+            <h2 class="section-title">Recent Activity</h2>
+            <div class="progress-container">
+                <div class="progress-title">
+                    <span>Problem Solving Progress</span>
+                    <span>75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+            
+            <div class="badges">
+                <div class="badge">Knight Badge</div>
+                <div class="badge">100 Days Streak</div>
+                <div class="badge">Algorithm Expert</div>
+                <div class="badge">Contest Master</div>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="widget">
+                <h3 class="widget-title">Calendar</h3>
+                <div class="calendar-nav">
+                    <button id="prev-month">&lt;</button>
+                    <span id="calendar-month-year">July 2023</span>
+                    <button id="next-month">&gt;</button>
+                </div>
+                <table class="calendar">
+                    <thead>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                        <!-- Calendar days will be generated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="widget">
+                <h3 class="widget-title">Website Stats</h3>
+                <div class="view-counter" id="view-count">1,024</div>
+                <div class="view-label">Total Views</div>
+            </div>
+            
+            <div class="widget">
+                <h3 class="widget-title">Daily Challenge</h3>
+                <p>Today's challenge: Two Sum</p>
+                <p>Difficulty: <span style="color: var(--leetcode-green)">Easy</span></p>
+                <button style="background-color: var(--leetcode-accent); color: var(--leetcode-primary); border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; margin-top: 10px;">Solve Problem</button>
+            </div>
+        </div>
+    </div>
     
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // 粒子效果初始化
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#0ff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": true },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#0ff", "opacity": 0.4, "width": 1 },
-                "move": { "enable": true, "speed": 3, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": { "enable": true, "mode": "repulse" },
-                    "onclick": { "enable": true, "mode": "push" },
-                    "resize": true
-                },
-                "modes": {
-                    "repulse": { "distance": 100, "duration": 0.4 },
-                    "push": { "particles_nb": 4 }
+        // Calendar functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentDate = new Date();
+            let currentMonth = currentDate.getMonth();
+            let currentYear = currentDate.getFullYear();
+            
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                              "July", "August", "September", "October", "November", "December"];
+            
+            function generateCalendar(month, year) {
+                const calendarBody = document.getElementById('calendar-body');
+                const monthYearDisplay = document.getElementById('calendar-month-year');
+                
+                // Clear previous calendar
+                calendarBody.innerHTML = '';
+                
+                // Set month and year display
+                monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
+                
+                // Get first day of month and total days
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                
+                let date = 1;
+                
+                // Create calendar rows
+                for (let i = 0; i < 6; i++) {
+                    // Stop if we've gone through all days
+                    if (date > daysInMonth) break;
+                    
+                    const row = document.createElement('tr');
+                    
+                    // Create cells for each day of the week
+                    for (let j = 0; j < 7; j++) {
+                        const cell = document.createElement('td');
+                        
+                        if (i === 0 && j < firstDay) {
+                            // Empty cells before first day
+                            cell.textContent = '';
+                        } else if (date > daysInMonth) {
+                            // Empty cells after last day
+                            cell.textContent = '';
+                        } else {
+                            // Day cells
+                            if (date === currentDate.getDate() && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
+                                // Highlight current day
+                                cell.innerHTML = `<span class="current-day">${date}</span>`;
+                            } else {
+                                cell.textContent = date;
+                            }
+                            date++;
+                        }
+                        
+                        row.appendChild(cell);
+                    }
+                    
+                    calendarBody.appendChild(row);
                 }
-            },
-            "retina_detect": true
-        });
-        
-        // 文字点击效果
-        const neonText = document.querySelector('.neon-text');
-        neonText.addEventListener('click', () => {
-            neonText.style.animation = 'none';
-            setTimeout(() => {
-                neonText.style.animation = 'flicker 1.5s infinite alternate';
-            }, 10);
-            
-            // 创建爆炸粒子效果
-            for (let i = 0; i < 30; i++) {
-                createParticle();
             }
-        });
-        
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.style.position = 'absolute';
-            particle.style.width = '10px';
-            particle.style.height = '10px';
-            particle.style.borderRadius = '50%';
-            particle.style.background = `hsl(${Math.random() * 60 + 180}, 100%, 50%)`;
-            particle.style.left = `${Math.random() * 100}vw`;
-            particle.style.top = '50vh';
-            particle.style.pointerEvents = 'none';
-            particle.style.boxShadow = '0 0 10px currentColor';
             
-            document.body.appendChild(particle);
-            
-            const animation = particle.animate([
-                { transform: 'translate(0, 0) scale(1)', opacity: 1 },
-                { transform: `translate(${Math.random() * 400 - 200}px, ${Math.random() * 400 - 200}px) scale(0)`, opacity: 0 }
-            ], {
-                duration: 1000 + Math.random() * 1000,
-                easing: 'cubic-bezier(0.1, 0.8, 0.2, 1)'
+            // Navigation buttons
+            document.getElementById('prev-month').addEventListener('click', function() {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                generateCalendar(currentMonth, currentYear);
             });
             
-            animation.onfinish = () => particle.remove();
-        }
+            document.getElementById('next-month').addEventListener('click', function() {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                generateCalendar(currentMonth, currentYear);
+            });
+            
+            // Initialize calendar
+            generateCalendar(currentMonth, currentYear);
+            
+            // View counter - this would normally come from a backend
+            let views = 1024;
+            const viewElement = document.getElementById('view-count');
+            
+            // Simulate view count increasing
+            setInterval(() => {
+                views += Math.floor(Math.random() * 3);
+                viewElement.textContent = views.toLocaleString();
+            }, 5000);
+        });
     </script>
 </body>
 </html>
