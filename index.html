@@ -24,6 +24,10 @@
             color: var(--leetcode-text);
             line-height: 1.6;
         }
+
+        canvas { 
+            display: block; 
+        }
         
         .container {
             max-width: 1200px;
@@ -310,7 +314,50 @@
         </div>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        // 初始化场景
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        
+        // 添加粒子
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particleCount = 1000;
+        
+        const posArray = new Float32Array(particleCount * 3);
+        for(let i = 0; i < particleCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.02,
+            color: 0x00ffff,
+            transparent: true,
+            opacity: 0.8
+        });
+        
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+        
+        camera.position.z = 2;
+        
+        // 动画循环
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.x += 0.001;
+            particlesMesh.rotation.y += 0.001;
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+        
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
         // Calendar functionality
         document.addEventListener('DOMContentLoaded', function() {
             let currentDate = new Date();
