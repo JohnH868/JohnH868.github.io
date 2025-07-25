@@ -6,8 +6,8 @@
     <title> JohnH868.github.io </title>
     <style>
         :root {
-            --leetcode-primary: #e5deef;
-            --leetcode-secondary: #c99de3;
+            --leetcode-primary: #c99de3;
+            --leetcode-secondary: #e5deef;
             --leetcode-accent: #ffa116;
             --leetcode-text: #060505;
             --leetcode-text-secondary: #040303;
@@ -354,8 +354,6 @@
             renderer.render(scene, camera);
         }
         
-        animate();
-        
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
         // Calendar functionality
@@ -450,6 +448,8 @@
                 viewElement.textContent = views.toLocaleString();
             }, 5000);
         });
+
+        animate();
     </script>
 </body>
 </html>
